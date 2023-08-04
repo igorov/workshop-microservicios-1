@@ -12,7 +12,7 @@ export default function Home() {
   const [loadingCustomers, setLoadingCustomers] = useState(false);
   const [loadingOrders, setLoadingOrders] = useState(false);
   const [customers, setCustomers] = useState<ICustomer[]>([]);
-  const [orders, setOrders] = useState<IOrders[]>([]);
+  const [orders, setOrders] = useState<IOrder[]>([]);
 
   useEffect(() => {
     fetchCustomers();
@@ -23,7 +23,7 @@ export default function Home() {
   const fetchCustomers = async () => {
     try {
       setLoadingCustomers(true); // Set loading to false when the data is fetched
-      const response = await fetch('https://customers-igorov-bit2hp2laa-uc.a.run.app/customers');
+      const response = await fetch(`${process.env.NEXT_PUBLIC_CUSTOMERS_URL}/customers`);
       const data = await response.json();
       setCustomers(data);
     } catch (error) {
@@ -35,7 +35,7 @@ export default function Home() {
 
   const editCustomer = async (customer: ICustomer) => {
     try {
-      const res = await fetch(`https://customers-igorov-bit2hp2laa-uc.a.run.app/customers/${customer.id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_CUSTOMERS_URL}/customers/${customer.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -51,7 +51,7 @@ export default function Home() {
 
   const deleteCustomer = async (id: number) => {
     try {
-      await fetch(`https://customers-igorov-bit2hp2laa-uc.a.run.app/customers/${id}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_CUSTOMERS_URL}/customers/${id}`, {
         method: 'DELETE',
       })
     } catch (error) {
@@ -60,7 +60,7 @@ export default function Home() {
   };
 
   const addCustomer = async (customer: ICustomer) => {
-    const res = await fetch(`https://customers-igorov-bit2hp2laa-uc.a.run.app/customers`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_CUSTOMERS_URL}/customers`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -75,7 +75,7 @@ export default function Home() {
   const fetchOrders = async () => {
     try {
       setLoadingOrders(true); // Set loading to false when the data is fetched
-      const response = await fetch('https://orders-igorov-bit2hp2laa-uc.a.run.app/orders');
+      const response = await fetch(`${process.env.NEXT_PUBLIC_ORDERS_URL}/orders`);
       const data = await response.json();
       setOrders(data);
     } catch (error) {
@@ -87,7 +87,7 @@ export default function Home() {
 
   const editOrder = async (order: IOrder) => {
     try {
-      const res = await fetch(`https://orders-igorov-bit2hp2laa-uc.a.run.app/orders/${order.id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_ORDERS_URL}/orders/${order.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -103,7 +103,7 @@ export default function Home() {
 
   const deleteOrder = async (id: number) => {
     try {
-      await fetch(`https://orders-igorov-bit2hp2laa-uc.a.run.app/orders/${id}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_ORDERS_URL}/orders/${id}`, {
         method: 'DELETE',
       })
     } catch (error) {
@@ -112,7 +112,7 @@ export default function Home() {
   };
 
   const addOrder = async (order: IOrder) => {
-    const res = await fetch(`https://orders-igorov-bit2hp2laa-uc.a.run.app/orders`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_ORDERS_URL}/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

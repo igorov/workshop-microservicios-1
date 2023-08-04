@@ -2,10 +2,10 @@ import pkg from 'pg';
 const { Client } = pkg;
 
 // variables de entorno
-const hostDB = '34.28.181.0'//process.env.DB_HOST;
-const userDB = 'wks_postgres'//process.env.DB_USER;
-const passDB = 'Pswd12_'//process.env.DB_PASS;
-const nameDB = 'workshop_db'//process.env.DB_NAME;
+const hostDB = process.env.DB_HOST;
+const userDB = process.env.DB_USER;
+const passDB = process.env.DB_PASS;
+const nameDB = process.env.DB_NAME;
 
 // Conexión a la BD
 export const client = new Client({

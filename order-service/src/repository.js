@@ -1,6 +1,6 @@
 import { client } from './database.js';
 
-const tableDB = 'orders_100'//process.env.DB_TABLE;
+const tableDB = process.env.DB_TABLE;
 
 export const getAll = async () => {
     const result = await client.query(`SELECT * FROM ${tableDB}`);
