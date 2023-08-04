@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors';
 import * as repository from './repository.js';
 import { connectToDatabase } from './database.js';
 import { startSubscriber } from './subscriber.js';
@@ -6,6 +7,15 @@ import { startSubscriber } from './subscriber.js';
 // Express
 const app = express();
 app.use(express.json());
+
+// Configura las opciones de CORS
+const corsOptions = {
+    origin: '*', // Permite el origen para todos
+    optionsSuccessStatus: 200 // Algunas versiones de CORS envían un status 204
+};
+
+// Aplica el middleware de CORS
+app.use(cors(corsOptions));
 
 // Conexion a la BD
 await connectToDatabase();
